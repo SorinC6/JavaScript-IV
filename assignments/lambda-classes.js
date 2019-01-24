@@ -12,10 +12,10 @@ class Person {
 		this.age = personAtributes.age;
 		this.location = personAtributes.location;
 		this.gender = personAtributes.gender;
-	};
+	}
 	speak() {
 		return `Hello my name is ${this.name}, I'm from ${this.location}`;
-	};
+	}
 }
 
 // const fred = new Person({
@@ -39,6 +39,17 @@ class Instructor extends Person {
 	grade(student, subject) {
 		console.log(`${student.name} receives a perfect score on ${subject}`);
 	};
+	gradeAdjust(student) {
+		let p = Math.round(Math.random() * 30);
+		if (student.grade > 70) {
+			//console.log(`if ${student.name} will decress with ${p}`)
+			student.grade -= p;
+			return `${p} are subtracted from ${student.name} now his grade is ${student.grade}`;
+		} else {
+            student.grade += p;
+            return `${p} points are added to ${student.name} now his grade is ${student.grade}`;
+		}
+	};
 }
 
 const fred = new Instructor({
@@ -51,7 +62,7 @@ const fred = new Instructor({
 	catchPhrase: `Don't forget the homies`
 });
 
-console.log(fred.demo("redux"));
+//console.log(fred.demo("redux"));
 
 class Student extends Person {
 	constructor(studentAtributes) {
@@ -59,6 +70,7 @@ class Student extends Person {
 		this.previousBackground = studentAtributes.previousBackground;
 		this.className = studentAtributes.className;
 		this.favSubjects = studentAtributes.favSubjects;
+		this.grade = this.getRandomInt(100);
 	};
 	listsSubjects() {
 		return this.favSubjects;
@@ -69,28 +81,49 @@ class Student extends Person {
 	sprintChallenge(subject) {
 		console.log(`${this.name} has begun sprint challenge on ${subject}`);
 	};
+	getRandomInt(max) {
+		return Math.floor(Math.random() * Math.floor(max));
+	};
+	graduate() {
+        console.log(`${this.name}'s grade id: ${this.grade}`);
+		if (this.grade > 70) {
+			return `BRAVO! ${
+				this.name
+			} graduated succesfully Lambda with a grade of ${this.grade}`;
+			//
+		} else {
+			let d = 70 - this.grade;
+			return `Sorry, you need ${d} points to graduate, study hard!`;
+		}
+	};
 }
 
-const st=new Student({
-    name:'Ion',
-    favSubjects: ['sss','sdsdsds'],
-})
+const st = new Student({
+	name: "Ion",
+	favSubjects: ["javascript", "css", "react", "node"]
+});
+
+console.log(st.graduate());
+console.log(fred.gradeAdjust(st));
+
 
 // console.log(st.PRAssignment('rom'));
 
 class PM extends Instructor {
 	constructor(pmAtributes) {
 		super(pmAtributes);
-        this.gradClassName = pmAtributes.gradClassName;
-        this.favInstructor= pmAtributes.favInstructor;
-    };
-    // it shoud take a paramter for channel ?
-    standUp(channel){
-        console.log(`${this.name} announces to ${channel}, @channel standy times!​​​​​`);
-    };
-    debugsCode(student,subject){
-        console.log(`${this.name} debugs ${student.name}'s code on ${subject}`)
-    }
+		this.gradClassName = pmAtributes.gradClassName;
+		this.favInstructor = pmAtributes.favInstructor;
+	};
+	// it shoud take a paramter for channel ?
+	standUp(channel) {
+		console.log(
+			`${this.name} announces to ${channel}, @channel standy times!​​​​​`
+		)
+	};
+	debugsCode(student, subject) {
+		console.log(`${this.name} debugs ${student.name}'s code on ${subject}`);
+	};
 }
 
 // const pm=new PM({
