@@ -10,12 +10,12 @@ class Person {
 	constructor(personAtributes) {
 		this.name = personAtributes.name;
 		this.age = personAtributes.age;
-        this.location = personAtributes.location;
-        this.gender=personAtributes.gender;
-    }
-    speak(){
-        return `Hello my name is ${this.name}, I'm from ${this.location}`;
-    }
+		this.location = personAtributes.location;
+		this.gender = personAtributes.gender;
+	}
+	speak() {
+		return `Hello my name is ${this.name}, I'm from ${this.location}`;
+	}
 }
 
 // const fred = new Person({
@@ -26,29 +26,55 @@ class Person {
 
 //console.log(fred.speak());
 
-class Instructor extends Person{
-    constructor(instructorAtributes){
-        super(instructorAtributes);
-        this.specialty=instructorAtributes.specialty;
-        this.favLanguage=instructorAtributes.favLanguage;
-        this.catchPhrase=instructorAtributes.catchPhrase;
-    }
-    demo(subject){
-        console.log(`Today we are learning about ${subject}`);
-    }
-    grade(student,subject){
-        console.log(`${student.name} receives a perfect score on ${subject}`)
-    }
+class Instructor extends Person {
+	constructor(instructorAtributes) {
+		super(instructorAtributes);
+		this.specialty = instructorAtributes.specialty;
+		this.favLanguage = instructorAtributes.favLanguage;
+		this.catchPhrase = instructorAtributes.catchPhrase;
+	}
+	demo(subject) {
+		console.log(`Today we are learning about ${subject}`);
+	}
+	grade(student, subject) {
+		console.log(`${student.name} receives a perfect score on ${subject}`);
+	}
 }
 
 const fred = new Instructor({
-    name: 'Fred',
-    location: 'Bedrock',
-    age: 37,
-    gender: 'male',
-    favLanguage: 'JavaScript',
-    specialty: 'Front-end',
-    catchPhrase: `Don't forget the homies`
-  });
+	name: "Fred",
+	location: "Bedrock",
+	age: 37,
+	gender: "male",
+	favLanguage: "JavaScript",
+	specialty: "Front-end",
+	catchPhrase: `Don't forget the homies`
+});
 
-  console.log(fred.demo('redux'));
+console.log(fred.demo("redux"));
+
+class Student extends Person{
+    constructor(studentAtributes){
+        super(studentAtributes);
+        this.previousBackground=studentAtributes.previousBackground;
+        this.className=studentAtributes.className;
+        this.favSubjects=studentAtributes.favSubjects;
+    };
+    listsSubjects(){
+        return this.favSubjects;
+    };
+    PRAssignment(subject){
+        console.log(`${this.name} has submitted a PR for ${subject}`)
+    };
+    sprintChallenge(subject){
+        console.log(`${this.name} has begun sprint challenge on ${subject}`)
+    };
+}
+
+
+// const st=new Student({
+//     name:'Ion',
+//     favSubjects: ['sss','sdsdsds'],
+// })
+
+// console.log(st.PRAssignment('rom'));
