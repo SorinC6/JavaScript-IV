@@ -205,7 +205,7 @@ console.log(archer.language); // Elvish
 console.log(archer.greet()); // Lilith offers a greeting in Elvish.
 console.log(mage.takeDamage()); // Bruce took damage.
 console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
-console.log('All good for now');
+console.log("All good for now");
 
 // Stretch task:
 // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.
@@ -223,6 +223,17 @@ console.log('All good for now');
 // 	oponent.damage();
 // };
 
+class Villan extends Humanoid {
+	constructor(villanAtributes) {
+		super(villanAtributes);
+		this.rank = villanAtributes.rank;
+		this.planet = villanAtributes.planet;
+	}
+	attack(oponent) {
+		oponent.damage();
+	}
+}
+
 // function Hero(heroAtributes) {
 // 	Humanoid.call(this, heroAtributes);
 // 	this.rank = heroAtributes.rank;
@@ -234,29 +245,37 @@ console.log('All good for now');
 // 	oponent.damage();
 // };
 
-// const hero = new Hero({
-// 	name: "Obi-Wan Kenobi",
-// 	rank: "jedi master",
-// 	planet: "Tatooine",
-// 	healthPoints: 5,
-// 	weapons: ["ligth saber", "force"],
-// 	team: "Master Yoda team"
-// });
+class Hero extends Humanoid {
+	constructor(heroAtributes) {
+		super(heroAtributes);
+		this.rank = heroAtributes.rank;
+		this.planet = heroAtributes.planet;
+    }
+    attack(oponent){
+        oponent.damage();
+    }
+}
 
-// const villan = new Villan({
-// 	name: "Darth Vader",
-// 	rank: "sith master",
-// 	planet: "Tatooine",
-// 	healthPoints: "5",
-// 	weapons: ["light saber", "dark side of the force"],
-// 	team: "Empire Team"
-// });
+const hero = new Hero({
+	name: "Obi-Wan Kenobi",
+	rank: "jedi master",
+	planet: "Tatooine",
+	healthPoints: 5,
+	weapons: ["ligth saber", "force"],
+	team: "Master Yoda team"
+});
 
-// hero.attack(villan);
-// hero.attack(villan);
-// hero.attack(villan);
-// villan.attack(hero);
-// villan.attack(hero);
-// villan.attack(hero);
-// villan.attack(hero);
-// villan.attack(hero);
+const villan = new Villan({
+	name: "Darth Vader",
+	rank: "sith master",
+	planet: "Tatooine",
+	healthPoints: "5",
+	weapons: ["light saber", "dark side of the force"],
+	team: "Empire Team"
+});
+
+hero.attack(villan);
+hero.attack(villan);
+hero.attack(villan);
+villan.attack(hero);
+villan.attack(hero);
